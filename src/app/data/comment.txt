@@ -1,0 +1,10 @@
+    // const { scrollYProgress } = useScroll();
+  
+  // const translate = useTransform(scrollYProgress, [0, 0.3], ['0vw', '-20vw']); 
+  // const translateY = useTransform(scrollYProgress, [0, 0.3], ['0vh', '70vh']);
+
+  // const imageTranslateX = useTransform(scrollYProgress, [0.03, 0.3], ['0vw', '30vw']);
+
+  // const isLarge = useIsLargeScreen();
+
+          // style={isLarge ? { translateX: translate, translateY: translateY }: {}}
