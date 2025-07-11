@@ -15,8 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Hilmy Ammar Darmawan",
   description: "Hilmy Ammar Darmawan's Website Portofolio",
+  icons: {
+    icon: '/logo.png',
+  }
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
