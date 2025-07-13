@@ -145,8 +145,8 @@ export default function HomePage({ projects }: { projects: any[] }) {
           <Image
             src="/image/228494.jpg"
             alt="Hilmy Ammar"
-            width={384}
-            height={320}
+            width={500}
+            height={380}
             className="rounded-full object-cover"
           />
         </motion.div>
@@ -159,28 +159,6 @@ export default function HomePage({ projects }: { projects: any[] }) {
           animate={aboutInView ? "visible" : "hidden"}
         >
           <AboutMe />
-        </motion.div>
-
-        {/* Tech Stack */}
-        <motion.div
-          ref={techRef}
-          variants={fadeInUp}
-          initial="hidden"
-          animate={techInView ? "visible" : "hidden"}
-          className="w-full py-12"
-        >
-          <HyperText className="text-blue-200 text-center">Tech Stack</HyperText>
-        </motion.div>
-
-        {/* Marquee */}
-        <motion.div
-          ref={marqueeRef}
-          variants={fadeInUp}
-          initial="hidden"
-          animate={marqueeInView || marqueeVisible ? "visible" : "hidden"}
-          className="min-h-[1px]"
-        >
-          <MarqueeComponent />
         </motion.div>
 
         {/* Word Rotate */}
@@ -223,3 +201,4 @@ export default function HomePage({ projects }: { projects: any[] }) {
     </div>
   );
 }
+

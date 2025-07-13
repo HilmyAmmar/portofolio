@@ -1,4 +1,3 @@
-import { Marquee } from "@/components/magicui/marquee";
 import { cn } from "@/lib/utils";
 
 const technologies = [
@@ -72,42 +71,49 @@ const technologies = [
   },
 ];
 
-const firstRow = technologies.slice(0, Math.ceil(technologies.length / 2));
-const secondRow = technologies.slice(Math.ceil(technologies.length / 2));
-
 const TechCard = ({ img, name }: { img: string; name: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-2 w-48 h-48 p-4",
+        "flex flex-col items-center justify-center gap-2 p-4",
+        "w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48",
         "rounded-xl border border-gray-200 bg-blue-100 shadow-sm dark:bg-gray-900 dark:border-gray-700",
         "transition-transform hover:scale-105",
         "flex-shrink-0"
       )}
     >
       <img
-        className="rounded-full w-24 h-24 object-contain"
+        className="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
         src={img}
         alt={`${name} logo`}
       />
-      <p className="text-sm font-semibold text-center dark:text-white">{name}</p>
+      <p className="text-xs sm:text-sm font-semibold text-center dark:text-white">{name}</p>
     </div>
   );
 };
 
 export function MarqueeComponent() {
   return (
-    <div className="relative flex flex-col items-center justify-center overflow-hidden">
-      <Marquee pauseOnHover className="whitespace-nowrap [--duration:20s] gap-4 py-4">
-        {firstRow.map((tech) => (
+    <div className="relative w-full py-8">
+      {/* Horizontal scrollable container */}
+      <div 
+        className="flex gap-4 overflow-x-auto pb-4 px-4 scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        {technologies.map((tech) => (
           <TechCard key={tech.name} {...tech} />
         ))}
-      </Marquee>
-      <Marquee reverse pauseOnHover className="whitespace-nowrap [--duration:20s] gap-4 py-4">
-        {secondRow.map((tech) => (
-          <TechCard key={tech.name} {...tech} />
-        ))}
-      </Marquee>
+      </div>
+      
+      {/* Optional: Add scroll indicators */}
+      <div className="flex justify-center mt-4 gap-2">
+        <div className="text-xs text-gray-500 dark:text-gray-400">
+          ← Scroll to see more →
+        </div>
+      </div>
     </div>
   );
 }
