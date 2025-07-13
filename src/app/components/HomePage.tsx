@@ -9,7 +9,6 @@ import Image from "next/image";
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { HyperText } from "@/components/magicui/hyper-text";
 import { WordRotate } from "@/components/magicui/word-rotate";
 
 import { useMobile } from "../helper/useMobile";
@@ -35,7 +34,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const isMobile = useMobile(); // ✅ Properly call useMobile
+  const isMobile = useMobile(); 
 
   // Refs and view tracking
   const imgRef = useRef(null);
@@ -116,7 +115,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
             {name && (
               <TextGenerateEffect
                 words={"Hilmy Ammar Darmawan"}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
+                className="text-6xl sm:text-7xl md:text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
                 onFinished={() => setTitle(true)}
               />
             )}

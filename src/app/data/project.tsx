@@ -68,4 +68,24 @@ export const projects = [
       "Framer Motion",
     ],
   },
+  {
+  "title": "Comparison of DBSCAN, K-Means, and Agglomerative Models for Clustering Indonesia’s Active Fire Hotspots",
+  "subtitle": "Data Mining Course Project Paper",
+  "description": "A scientific research paper applying DBSCAN, K-Means, and Agglomerative clustering methods on NASA FIRMS hotspot data to analyze wildfire patterns across Indonesia using the CRISP-DM framework.",
+  "highlights": "Comprehensive spatial-temporal clustering of fire hotspots, evaluation using Silhouette Score and Davies-Bouldin Index, application of PCA for dimensionality reduction, temporal feature engineering, and geographic visualization of cluster results.",
+  "contribution": "Implemented three clustering algorithms (DBSCAN, K-Means, Agglomerative) on preprocessed FIRMS data using Python in Google Colab. Applied PCA for dimensionality reduction, encoded temporal features, and validated clusters using Silhouette Score and DBI. Visualized spatial clusters with GeoPandas. Highlighted regional fire patterns and implications for disaster management strategies in Indonesia.",
+  "links": [
+    "https://colab.research.google.com/drive/129M-ayKCDmjjP9FrFu6FtDUinC-G7WJA?usp=sharing"
+  ],
+  "images": [],
+  "technologies": [
+    "Python",
+    "Google Colab",
+    "Pandas",
+    "Scikit-Learn",
+    "GeoPandas",
+    "CRISP-DM",
+    ]
+  }
+
 ];
