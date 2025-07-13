@@ -1,8 +1,10 @@
 'use client';
 
-import { useRef, useState, useEffect, use } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView, easeOut } from "framer-motion";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
@@ -11,9 +13,15 @@ import { HyperText } from "@/components/magicui/hyper-text";
 import { WordRotate } from "@/components/magicui/word-rotate";
 
 import { GridItem } from "./cards";
-import { MarqueeComponent } from "./marquee";
 import { useMobile } from "../helper/useMobile";
-import AboutMe from "./aboutMe"; 
+
+// Lazy load heavy components
+const AboutMe = dynamic(() => import("./aboutMe"), { ssr: false });
+const MarqueeComponent = dynamic(() =>
+  import("./marquee").then(mod => mod.MarqueeComponent),
+  { ssr: false }
+);
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -31,9 +39,9 @@ export default function HomePage({ projects }: { projects: any[] }) {
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useMobile(); // ✅ Properly call useMobile
 
-  // Refs and inView hooks
+  // Refs and view tracking
   const imgRef = useRef(null);
   const aboutRef = useRef(null);
   const techRef = useRef(null);
@@ -41,80 +49,74 @@ export default function HomePage({ projects }: { projects: any[] }) {
   const wordRef = useRef(null);
   const gridRef = useRef(null);
 
-  // Ensure client-side rendering
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Configure useInView with more lenient options for marquee
-  const imgInView = useInView(imgRef, { 
-    once: true, 
-    amount: 0.1,
-    margin: "0px 0px -100px 0px"
-  });
-  
-  const aboutInView = useInView(aboutRef, { 
-    once: true, 
-    amount: 0.1,
-    margin: "0px 0px -100px 0px"
-  });
-  
-  const techInView = useInView(techRef, { 
-    once: true, 
-    amount: 0.1,
-    margin: "0px 0px -100px 0px"
-  });
-  
-  const marqueeInView = useInView(marqueeRef, { 
-    once: true, 
-    amount: 0, // Trigger as soon as any part is visible
-    margin: "0px 0px -50px 0px" // Reduced margin
-  });
-  
-  const wordInView = useInView(wordRef, { 
-    once: true, 
-    amount: 0.1,
-    margin: "0px 0px -100px 0px"
-  });
-  
-  const gridInView = useInView(gridRef, { 
-    once: true, 
-    amount: 0.1,
-    margin: "0px 0px -100px 0px"
-  });
+  const imgInView = useInView(imgRef, { once: true, amount: 0.1 });
+  const aboutInView = useInView(aboutRef, { once: true, amount: 0.1 });
+  const techInView = useInView(techRef, { once: true, amount: 0.1 });
+  const marqueeInView = useInView(marqueeRef, { once: true, amount: 0, margin: "0px 0px -50px 0px" });
+  const wordInView = useInView(wordRef, { once: true, amount: 0.1 });
+  const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
 
-  // More robust marquee visibility handling
   const [marqueeVisible, setMarqueeVisible] = useState(false);
-  
+
   useEffect(() => {
     if (!isClient || !marqueeRef.current) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setMarqueeVisible(true);
         }
       },
-      {
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0
-      }
+      { rootMargin: "0px 0px -50px 0px", threshold: 0 }
     );
-    
+
     observer.observe(marqueeRef.current);
-    
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, [isClient]);
 
   return (
     <div className="relative bg-gradient-to-b from-[#000B18] via-[#001122] to-[#000B18]">
-      {/* Hero Section with WavyBackground */}
-      <WavyBackground disableWave={isMobile} backgroundFill="#000B18" containerClassName="h-screen">
-        <motion.div className="sticky top-0">
+      {/* Hero Section */}
+      {!isMobile ? (
+        <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
+          <motion.div className="sticky top-0">
+            <div className="w-[80vw] lg:w-[60vw]">
+              <TextGenerateEffect
+                words={"Hi, I'm "}
+                className="text-xl text-blue-200"
+                onFinished={() => setName(true)}
+              />
+              {name && (
+                <TextGenerateEffect
+                  words={"Hilmy Ammar Darmawan"}
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
+                  onFinished={() => setTitle(true)}
+                />
+              )}
+            </div>
+            {title && (
+              <div className="flex justify-end pt-[3vh]">
+                <ContainerTextFlip
+                  words={["Software Engineer", "Frontend Engineer", "Backend Engineer", "Mobile Engineer"]}
+                  className="p-2"
+                  textClassName="text-xl text-[#000B18] dark:text-blue-400"
+                />
+              </div>
+            )}
+          </motion.div>
+        </WavyBackground>
+      ) : (
+        <div className="h-screen flex items-center justify-center bg-[#000B18]">
           <div className="w-[80vw] lg:w-[60vw]">
-            <TextGenerateEffect words={"Hi, I'm "} className="text-xl text-blue-200 " onFinished={() => setName(true)} />
+            <TextGenerateEffect
+              words={"Hi, I'm "}
+              className="text-xl text-blue-200"
+              onFinished={() => setName(true)}
+            />
             {name && (
               <TextGenerateEffect
                 words={"Hilmy Ammar Darmawan"}
@@ -122,21 +124,20 @@ export default function HomePage({ projects }: { projects: any[] }) {
                 onFinished={() => setTitle(true)}
               />
             )}
+            {title && (
+              <div className="flex justify-end pt-[3vh]">
+                <ContainerTextFlip
+                  words={["Software Engineer", "Frontend Engineer", "Backend Engineer", "Mobile Engineer"]}
+                  className="p-2"
+                  textClassName="text-xl text-blue-400"
+                />
+              </div>
+            )}
           </div>
+        </div>
+      )}
 
-          {title && (
-            <div className="flex justify-end pt-[3vh]">
-              <ContainerTextFlip
-                words={["Software Engineer", "Frontend Engineer", "Backend Engineer", "Mobile Engineer"]}
-                className="p-2"
-                textClassName="text-xl text-[#000B18] dark:text-blue-400"
-              />
-            </div>
-          )}
-        </motion.div>
-      </WavyBackground>
-
-      {/* Content sections with proper background */}
+      {/* Main Content */}
       <div className="bg-[#000B18] flex flex-col items-center justify-center px-6 sm:px-8 md:px-12">
         {/* Image */}
         <motion.div
@@ -145,7 +146,13 @@ export default function HomePage({ projects }: { projects: any[] }) {
           initial="hidden"
           animate={imgInView ? "visible" : "hidden"}
         >
-          <img className="rounded-full w-96 h-80" src="/image/228494.jpg" alt="image description" />
+          <Image
+            src="/image/228494.jpg"
+            alt="Hilmy Ammar"
+            width={384}
+            height={320}
+            className="rounded-full object-cover"
+          />
         </motion.div>
 
         {/* About Me */}
@@ -158,7 +165,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
           <AboutMe />
         </motion.div>
 
-        {/* Tech Stack Title */}
+        {/* Tech Stack */}
         <motion.div
           ref={techRef}
           variants={fadeInUp}
@@ -169,13 +176,13 @@ export default function HomePage({ projects }: { projects: any[] }) {
           <HyperText className="text-blue-200 text-center">Tech Stack</HyperText>
         </motion.div>
 
-        {/* Marquee with improved viewport detection */}
+        {/* Marquee */}
         <motion.div
           ref={marqueeRef}
           variants={fadeInUp}
           initial="hidden"
           animate={marqueeInView || marqueeVisible ? "visible" : "hidden"}
-          className="min-h-[1px]" // Ensure it has some height for detection
+          className="min-h-[1px]"
         >
           <MarqueeComponent />
         </motion.div>
@@ -188,7 +195,10 @@ export default function HomePage({ projects }: { projects: any[] }) {
           animate={wordInView ? "visible" : "hidden"}
           className="flex flex-row py-12"
         >
-          <WordRotate className="text-blue-200 text-4xl" words={["Featured Project", "Collage Project", "Personal Project"]} />
+          <WordRotate
+            className="text-blue-200 text-4xl"
+            words={["Featured Project", "Collage Project", "Personal Project"]}
+          />
         </motion.div>
 
         {/* Project Grid */}
