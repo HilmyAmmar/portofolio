@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 import { WavyBackground } from "@/components/ui/wavy-background";
 import { ContainerTextFlip } from "@/components/ui/container-text-flip";
@@ -14,19 +15,20 @@ import { MarqueeComponent } from "./marquee";
 import AboutMe from "./aboutMe"; 
 
 export default function HomePage({ projects }: { projects: any[] }) {
+
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center px-10 min-h-screen">
+    <div className="flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 min-h-screen">
       <WavyBackground backgroundFill="#000B18">
         <motion.div className="sticky top-0">
-          <div className="sm:w-[60vh] md:w-[80vh] w-full">
+          <div className="w-[80vw] lg:w-[60vw]">
             <TextGenerateEffect words={"Hi, I'm "} className="text-xl text-blue-200 " onFinished={() => setName(true)} />
             {name && (
               <TextGenerateEffect
                 words={"Hilmy Ammar Darmawan"}
-                className="text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
+                className="text-7xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
                 onFinished={() => setTitle(true)}
               />
             )}

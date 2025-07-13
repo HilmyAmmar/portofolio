@@ -26,7 +26,7 @@ export const GridItem = ({
   const [more, setMore] = useState(false);
 
   return (
-    <Card className="relative flex w-full flex-col justify-between rounded-3xl bg-blue-100 py-12 px-8 lg:px-16 lg:py-16 max-w-5xl mx-auto shadow-xl transition-transform duration-300 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
+    <Card className="relative flex w-full flex-col justify-between rounded-3xl bg-blue-100 py-4 px-4 lg:px-16 lg:py-16 max-w-5xl mx-auto shadow-xl transition-transform duration-300 dark:shadow-[0px_0px_27px_0px_#2D2D2D]">
       <CardHeader className="flex-col items-start pb-0">
         <p className="text-xl lg:text-2xl font-bold uppercase text-[#144272]">{title}</p>
         <small className="text-base text-gray-700 dark:text-gray-400">{subtitle}</small>

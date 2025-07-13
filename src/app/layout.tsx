@@ -26,6 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hilmy Ammar Darmawan</title>
+        <link rel="icon" href="/logo.png" />
+      </head>S
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[#000B18]`}
       >
