@@ -97,7 +97,7 @@ const TechCard = ({ img, name }: { img: string; name: string }) => {
 
 export function MarqueeComponent() {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center overflow-hidden">
       <Marquee pauseOnHover className="whitespace-nowrap [--duration:20s] gap-4 py-4">
         {firstRow.map((tech) => (
           <TechCard key={tech.name} {...tech} />
