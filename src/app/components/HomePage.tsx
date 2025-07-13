@@ -50,28 +50,8 @@ export default function HomePage({ projects }: { projects: any[] }) {
 
   const imgInView = useInView(imgRef, { once: true, amount: 0.1 });
   const aboutInView = useInView(aboutRef, { once: true, amount: 0.1 });
-  const techInView = useInView(techRef, { once: true, amount: 0.1 });
-  const marqueeInView = useInView(marqueeRef, { once: true, amount: 0, margin: "0px 0px -50px 0px" });
   const wordInView = useInView(wordRef, { once: true, amount: 0.1 });
   const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
-
-  const [marqueeVisible, setMarqueeVisible] = useState(false);
-
-  useEffect(() => {
-    if (!isClient || !marqueeRef.current) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setMarqueeVisible(true);
-        }
-      },
-      { rootMargin: "0px 0px -50px 0px", threshold: 0 }
-    );
-
-    observer.observe(marqueeRef.current);
-    return () => observer.disconnect();
-  }, [isClient]);
 
   return (
     <div className="relative bg-gradient-to-b from-[#000B18] via-[#001122] to-[#000B18]">
