@@ -92,3 +92,5 @@ export const GridItem = ({
     </Card>
   );
 };
+
+export default GridItem;

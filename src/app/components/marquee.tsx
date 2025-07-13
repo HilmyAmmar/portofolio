@@ -81,7 +81,8 @@ const TechCard = ({ img, name }: { img: string; name: string }) => {
       className={cn(
         "flex flex-col items-center justify-center gap-2 w-48 h-48 p-4",
         "rounded-xl border border-gray-200 bg-blue-100 shadow-sm dark:bg-gray-900 dark:border-gray-700",
-        "transition-transform hover:scale-105"
+        "transition-transform hover:scale-105",
+        "flex-shrink-0"
       )}
     >
       <img
@@ -97,12 +98,12 @@ const TechCard = ({ img, name }: { img: string; name: string }) => {
 export function MarqueeComponent() {
   return (
     <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-      <Marquee pauseOnHover className="[--duration:20s] gap-4 py-4">
+      <Marquee pauseOnHover className="whitespace-nowrap [--duration:20s] gap-4 py-4">
         {firstRow.map((tech) => (
           <TechCard key={tech.name} {...tech} />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:20s] gap-4 py-4">
+      <Marquee reverse pauseOnHover className="whitespace-nowrap [--duration:20s] gap-4 py-4">
         {secondRow.map((tech) => (
           <TechCard key={tech.name} {...tech} />
         ))}
@@ -110,3 +111,5 @@ export function MarqueeComponent() {
     </div>
   );
 }
+
+export default MarqueeComponent;

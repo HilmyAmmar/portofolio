@@ -12,16 +12,12 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { HyperText } from "@/components/magicui/hyper-text";
 import { WordRotate } from "@/components/magicui/word-rotate";
 
-import { GridItem } from "./cards";
 import { useMobile } from "../helper/useMobile";
 
 // Lazy load heavy components
 const AboutMe = dynamic(() => import("./aboutMe"), { ssr: false });
-const MarqueeComponent = dynamic(() =>
-  import("./marquee").then(mod => mod.MarqueeComponent),
-  { ssr: false }
-);
-
+const MarqueeComponent = dynamic(() => import("./marquee"), { ssr: false });
+const GridItem = dynamic(() => import("./cards"), {ssr: false})
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
