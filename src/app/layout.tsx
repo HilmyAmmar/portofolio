@@ -32,7 +32,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[#000B18]`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-gradient-to-b from-[#000B18] via-[#001122] to-[#000B18]`}
       >
         <main className="relative min-h-screen">
           {children}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, use } from "react";
 import { motion } from "framer-motion";
 import { useInView, easeOut } from "framer-motion";
 
@@ -12,6 +12,7 @@ import { WordRotate } from "@/components/magicui/word-rotate";
 
 import { GridItem } from "./cards";
 import { MarqueeComponent } from "./marquee";
+import { useMobile } from "../helper/useMobile";
 import AboutMe from "./aboutMe"; 
 
 const fadeInUp = {
@@ -30,6 +31,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
 
   // Refs and inView hooks
   const imgRef = useRef(null);
@@ -107,9 +109,9 @@ export default function HomePage({ projects }: { projects: any[] }) {
   }, [isClient]);
 
   return (
-    <div className="relative">
+    <div className="relative bg-gradient-to-b from-[#000B18] via-[#001122] to-[#000B18]">
       {/* Hero Section with WavyBackground */}
-      <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
+      <WavyBackground disableWave={isMobile} backgroundFill="#000B18" containerClassName="h-screen">
         <motion.div className="sticky top-0">
           <div className="w-[80vw] lg:w-[60vw]">
             <TextGenerateEffect words={"Hi, I'm "} className="text-xl text-blue-200 " onFinished={() => setName(true)} />

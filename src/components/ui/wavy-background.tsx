@@ -13,6 +13,7 @@ export const WavyBackground = ({
   blur = 8,
   speed = "fast",
   waveOpacity = 0.5,
+  disableWave = false, // 👈 default false
   ...props
 }: {
   children?: any;
@@ -24,6 +25,7 @@ export const WavyBackground = ({
   blur?: number;
   speed?: "slow" | "fast";
   waveOpacity?: number;
+  disableWave?: boolean; // 👈 new prop
   [key: string]: any;
 }) => {
   const noise = createNoise3D();
@@ -115,11 +117,13 @@ export const WavyBackground = ({
 
 
   useEffect(() => {
-    init();
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
+    if (!disableWave) {
+      init();
+      return () => {
+        cancelAnimationFrame(animationId);
+      };
+    }
+  }, [disableWave]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
