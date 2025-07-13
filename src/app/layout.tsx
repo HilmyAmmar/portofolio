@@ -30,7 +30,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Hilmy Ammar Darmawan</title>
         <link rel="icon" href="/logo.png" />
-      </head>S
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full bg-[#000B18]`}
       >

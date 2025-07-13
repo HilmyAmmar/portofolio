@@ -89,7 +89,7 @@ export const WavyBackground = ({
       ctx.strokeStyle = waveColors[i % waveColors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * (0.2 + i * 0.08));
+        ctx.lineTo(x, y + h * (0.2 + i * 0.15));
       }
       ctx.stroke();
       ctx.closePath();
@@ -107,8 +107,8 @@ export const WavyBackground = ({
     // 👉 Blur only applies to the waves
     ctx.filter = `blur(${blur}px)`;
     ctx.globalAlpha = waveOpacity || 0.5;
-    drawWave(6);
-    anotherWave(9);
+    drawWave(3);
+    anotherWave(5);
 
     animationId = requestAnimationFrame(render);
   };
