@@ -188,7 +188,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
           initial="hidden"
           animate={gridInView ? "visible" : "hidden"}
           transition={{duration: 1}}
-          className="grid grid-cols-1 lg:gap-10 gap-10 w-full max-w-6xl mb-10 px-6"
+          className="grid grid-cols-1 lg:gap-10 gap-10 w-full max-w-6xl mb-10"
         >
           {projects.map((project, index) => (
             <GridItem

@@ -15,7 +15,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   return (
     <Swiper
       modules={[Navigation, Pagination]}
-      slidesPerView={2}
+      slidesPerView={1}
       spaceBetween={20}
       navigation
       pagination={{ clickable: true }}
