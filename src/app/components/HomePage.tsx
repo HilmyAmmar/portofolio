@@ -52,7 +52,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
       {!isMobile ? (
         <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
           <motion.div className="sticky top-0">
-            <div className="w-[80vw] lg:w-[60vw]">
+            <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
               <TextGenerateEffect
                 words={"Hi, I'm "}
                 className="text-xl text-blue-200"
@@ -127,7 +127,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
             initial="hidden"
             animate={imgInView ? "visible" : "hidden"}
             transition={{duration: 1}}
-            className="flex-shrink-0 rounded-full overflow-hidden mb-6 w-[80%] md:w-[70%] lg:w-[60%] xl:w=[50%] 2xl:w-[35%]"
+            className="flex-shrink-0 rounded-full overflow-hidden mb-6 w-[80%] md:w-[70%] lg:w-[60%] xl:w=[50%] 2xl:w-[35%] 2xl:-ml-50"
           >
             <Image
               src="/image/228494.jpg"
