@@ -56,7 +56,7 @@ export const projects = [
     highlights:
       "Responsive layout, animated introduction with text effects, interactive project cards, dynamic project rendering, and aesthetic UI enhancements using custom components.",
     contribution:
-      "Used Framer Motion for smooth transitions and Tailwind CSS for responsive design. Leveraged Next.js Static Site Generation (SSG) to pre-render pages at build time, resulting in faster load times and improved SEO. Deployed via Vercel for global access and edge caching. Integrated reusable components from Aceternity UI, Magic UI, and other libraries to enhance user interaction and visual appeal.",
+      "I built the site using Next.js and TypeScript, focusing on performance and visual engagement. To keep the experience smooth, I used Framer Motion for subtle animations and transitions, and styled everything with Tailwind CSS for responsive, desktop-first layouts. Heavy components were lazily loaded using next/dynamic to reduce initial load times and improve runtime performance. I also leveraged client-side rendering where appropriate to keep interactions fast and fluid. The site is deployed on Vercel, benefiting from global edge caching and optimized delivery. I integrated polished UI components from Aceternity UI, Magic UI, and similar libraries to elevate the overall user experience and maintain consistent design.",
     links: ["https://example.com/demo", "https://example.com/github"],
     images: [
     ],

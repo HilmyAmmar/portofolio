@@ -33,7 +33,6 @@ const fadeInUp = {
 export default function HomePage({ projects }: { projects: any[] }) {
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
-  const isMobile = useMobile(); 
 
   // Refs and view tracking
   const imgRef = useRef(null);
@@ -49,61 +48,6 @@ export default function HomePage({ projects }: { projects: any[] }) {
   return (
     <div className="relative">
       {/* Hero Section */}
-      {/* {!isMobile ? (
-        <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
-          <motion.div className="sticky top-0">
-            <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
-              <TextGenerateEffect
-                words={"Hi, I'm "}
-                className="text-xl text-blue-200"
-                onFinished={() => setName(true)}
-              />
-              {name && (
-                <TextGenerateEffect
-                  words={"Hilmy Ammar Darmawan"}
-                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
-                  onFinished={() => setTitle(true)}
-                />
-              )}
-            </div>
-            {title && (
-              <div className="flex justify-end pt-[3vh]">
-                <ContainerTextFlip
-                  words={["Software Engineer", "Frontend Engineer", "Backend Engineer", "Mobile Engineer"]}
-                  className="p-2"
-                  textClassName="text-xl text-[#000B18] dark:text-blue-400"
-                />
-              </div>
-            )}
-          </motion.div>
-        </WavyBackground>
-      ) : (
-        <div className="h-screen flex items-center justify-center bg-[#000B18]">
-          <div className="w-[80vw] lg:w-[60vw]">
-            <TextGenerateEffect
-              words={"Hi, I'm "}
-              className="text-xl text-blue-200"
-              onFinished={() => setName(true)}
-            />
-            {name && (
-              <TextGenerateEffect
-                words={"Hilmy Ammar Darmawan"}
-                className="text-6xl sm:text-7xl md:text-8xl bg-gradient-to-t from-gray-100 via-sky-300 to-sky-600 bg-clip-text text-transparent"
-                onFinished={() => setTitle(true)}
-              />
-            )}
-            {title && (
-              <div className="flex justify-end pt-[3vh]">
-                <ContainerTextFlip
-                  words={["Software Engineer", "Frontend Engineer", "Backend Engineer", "Mobile Engineer"]}
-                  className="p-2"
-                  textClassName="text-xl text-blue-400"
-                />
-              </div>
-            )}
-          </div>
-        </div>
-      )} */}
       <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
           <motion.div className="sticky top-0">
             <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
