@@ -139,7 +139,6 @@ export default function HomePage({ projects }: { projects: any[] }) {
           </motion.div>
         </div>
 
-
         {/* Word Rotate */}
         <motion.div
           ref={wordRef}
