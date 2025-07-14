@@ -109,7 +109,7 @@ export const WavyBackground = ({
     // 👉 Blur only applies to the waves
     ctx.filter = `blur(${blur}px)`;
     ctx.globalAlpha = waveOpacity || 0.5;
-    drawWave(3);
+    drawWave(4);
     anotherWave(5);
 
     animationId = requestAnimationFrame(render);

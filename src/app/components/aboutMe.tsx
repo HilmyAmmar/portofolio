@@ -112,7 +112,7 @@ export default function AboutMe() {
   const [activeTab, setActiveTab] = useState('profile');
 
   return (
-    <div className="flex flex-col lg:flex-row flex-1 max-w-6xl mx-auto px-4 py-12 gap-10 items-start">
+    <div className="flex flex-col lg:flex-row flex-1 max-w-6xl mx-aut py-12 gap-10 items-start">
       {/* Tab Nav */}
       <ul className="flex flex-col space-y-3 2xl:space-y-10 text-sm font-medium text-gray-400 w-full lg:w-80">
       {tabs.map((tab) => {
