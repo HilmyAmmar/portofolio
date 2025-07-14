@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView, easeOut } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -15,8 +15,8 @@ import { useMobile } from "../helper/useMobile";
 
 // Lazy load heavy components
 const AboutMe = dynamic(() => import("./aboutMe"), { ssr: false });
-const MarqueeComponent = dynamic(() => import("./marquee"), { ssr: false });
 const GridItem = dynamic(() => import("./cards"), {ssr: false})
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -33,28 +33,21 @@ const fadeInUp = {
 export default function HomePage({ projects }: { projects: any[] }) {
   const [name, setName] = useState(false);
   const [title, setTitle] = useState(false);
-  const [isClient, setIsClient] = useState(false);
   const isMobile = useMobile(); 
 
   // Refs and view tracking
   const imgRef = useRef(null);
   const aboutRef = useRef(null);
-  const techRef = useRef(null);
-  const marqueeRef = useRef(null);
   const wordRef = useRef(null);
   const gridRef = useRef(null);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const imgInView = useInView(imgRef, { once: true, amount: 0.1 });
-  const aboutInView = useInView(aboutRef, { once: true, amount: 0.1 });
-  const wordInView = useInView(wordRef, { once: true, amount: 0.1 });
-  const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
+  const imgInView = useInView(imgRef, { once: true, amount: 0.2 });
+  const aboutInView = useInView(aboutRef, { once: true, amount: 0.2 });
+  const wordInView = useInView(wordRef, { once: true, amount: 0.2 });
+  const gridInView = useInView(gridRef, { once: true, amount: 0.2 });
 
   return (
-    <div className="relative bg-gradient-to-b from-[#000B18] via-[#001122] to-[#000B18]">
+    <div className="relative">
       {/* Hero Section */}
       {!isMobile ? (
         <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
@@ -113,32 +106,39 @@ export default function HomePage({ projects }: { projects: any[] }) {
       )}
 
       {/* Main Content */}
-      <div className="bg-[#000B18] flex flex-col items-center justify-center px-6 sm:px-8 md:px-12">
+      <div className="bg-[#000B18] flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 w-full">
         {/* Image */}
-        <motion.div
-          ref={imgRef}
-          variants={fadeInUp}
-          initial="hidden"
-          animate={imgInView ? "visible" : "hidden"}
-        >
-          <Image
-            src="/image/228494.jpg"
-            alt="Hilmy Ammar"
-            width={500}
-            height={380}
-            className="rounded-full object-cover"
-          />
-        </motion.div>
+        <div className="flex flex-col-reverse 2xl:flex-row items-center justify-evenly max-w-8xl mx-auto w-full px-4 gap-x-[10vw]">
+          {/* About Me */}
+          <motion.div
+            ref={aboutRef}
+            variants={fadeInUp}
+            initial="hidden"
+            animate={aboutInView ? "visible" : "hidden"}
+            transition={{duration: 1}}
+            className="w-[90%] 2xl:w-[50%] h-full 2xl:pl-[10vh]"
+          >
+            <AboutMe />
+          </motion.div>
+          {/* Image */}
+          <motion.div
+            ref={imgRef}
+            variants={fadeInUp}
+            initial="hidden"
+            animate={imgInView ? "visible" : "hidden"}
+            transition={{duration: 1}}
+            className="flex-shrink-0 rounded-full overflow-hidden mb-6 w-[80%] md:w-[70%] lg:w-[60%] xl:w=[50%] 2xl:w-[35%]"
+          >
+            <Image
+              src="/image/228494.jpg"
+              alt="Hilmy Ammar Darmawan"
+              width={400}
+              height={200}
+              className="object-cover w-full h-full"
+            />
+          </motion.div>
+        </div>
 
-        {/* About Me */}
-        <motion.div
-          ref={aboutRef}
-          variants={fadeInUp}
-          initial="hidden"
-          animate={aboutInView ? "visible" : "hidden"}
-        >
-          <AboutMe />
-        </motion.div>
 
         {/* Word Rotate */}
         <motion.div
@@ -146,6 +146,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
           variants={fadeInUp}
           initial="hidden"
           animate={wordInView ? "visible" : "hidden"}
+          transition={{duration: 1}}
           className="flex flex-row py-12"
         >
           <WordRotate
@@ -160,6 +161,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
           variants={fadeInUp}
           initial="hidden"
           animate={gridInView ? "visible" : "hidden"}
+          transition={{duration: 1}}
           className="grid grid-cols-1 lg:gap-10 gap-10 w-full max-w-6xl mb-10"
         >
           {projects.map((project, index) => (
@@ -177,7 +179,9 @@ export default function HomePage({ projects }: { projects: any[] }) {
           ))}
         </motion.div>
       </div>
+      
     </div>
+    
   );
 }
 
