@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useInView, easeOut } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -45,10 +45,24 @@ export default function HomePage({ projects }: { projects: any[] }) {
   const wordInView = useInView(wordRef, { once: true, amount: 0.2 });
   const gridInView = useInView(gridRef, { once: true, amount: 0.2 });
 
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShowScrollHint(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
   return (
     <div className="relative">
       {/* Hero Section */}
-      <WavyBackground backgroundFill="#000B18" containerClassName="h-screen">
+      <WavyBackground backgroundFill="#000B18" containerClassName="h-screen relative">
           <motion.div className="sticky top-0">
             <div className="w-[80vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] 2xl:w-[40vw]">
               <TextGenerateEffect
@@ -74,6 +88,36 @@ export default function HomePage({ projects }: { projects: any[] }) {
               </div>
             )}
           </motion.div>
+          {showScrollHint && (
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50"
+            style={{ 
+              position: 'fixed', 
+              bottom: '2rem',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 9999 
+            }}
+          >
+            <div className="text-lg text-blue-200 flex flex-col items-center">
+              <span className="mb-1">Scroll down</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </motion.div>
+        )}
+
         </WavyBackground>
 
       {/* Main Content */}
