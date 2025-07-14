@@ -133,7 +133,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
         </WavyBackground>
 
       {/* Main Content */}
-      <div className="bg-[#000B18] flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 w-full">
+      <div className="bg-[#000B18] flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 w-full">
         {/* Image */}
         <div className="flex flex-col-reverse 2xl:flex-row items-center justify-evenly max-w-8xl mx-auto w-full gap-x-[10vw]">
           {/* About Me */}
