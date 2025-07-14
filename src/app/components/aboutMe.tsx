@@ -79,11 +79,11 @@ const tabs = [
     content: (
       <ul className="text-gray-300 list-disc pl-5 text-lg">
         <HyperText className="text-blue-200 text-2xl">Tech Stack</HyperText>
-        <li><strong>Languages:</strong> JavaScript, TypeScript, Python, Dart</li>
+        <li><strong>Languages:</strong> HTML, CSS, JavaScript, TypeScript, Python, Dart, Java, SQL</li>
         <li><strong>Frameworks:</strong> React, Next.js, Django, Flutter</li>
         <li><strong>Styling & UI:</strong> Tailwind CSS, Framer Motion</li>
         <li><strong>Backend / DB:</strong> PostgreSQL, Supabase, Prisma</li>
-        <li><strong>Tools:</strong> Git, Docker, Figma, Vercel, EmailJS</li>
+        <li><strong>Tools:</strong> Git, Figma, Vercel, EmailJS</li>
       </ul>
     ),
   },

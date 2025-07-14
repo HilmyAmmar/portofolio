@@ -176,7 +176,7 @@ export default function HomePage({ projects }: { projects: any[] }) {
           className="flex flex-row py-12"
         >
           <WordRotate
-            className="text-blue-200 text-4xl"
+            className="text-blue-200 text-6xl"
             words={["Featured Project", "Collage Project", "Personal Project"]}
           />
         </motion.div>
